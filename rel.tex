@@ -1,0 +1,56 @@
+\documentclass[12pt]{article} %
+% Wide page
+\usepackage{fullpage}
+% Bibliography
+\usepackage[numbers]{natbib}
+% Tick symbol
+\usepackage{amssymb}
+% Landscape for the whole document
+%% \usepackage[landscape]{geometry} %
+% for m{cm} in tabular
+\usepackage{array}
+% Center alignment for m
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+
+\begin{document}
+
+\section{CT-WebAssembly}
+Check spectre policy
+{\footnotesize
+\begin{longtable}{|M{0.12\textwidth}|M{0.18\textwidth}M{0.12\textwidth}M{0.12\textwidth}M{0.20\textwidth}M{0.12\textwidth}|}
+  \hline
+  Crypto Benchmark & Inputs& Loops & Operations on Sec&Policies & - \\
+  \hline
+  Salsa20 &
+      \begin{itemize}
+      \item Mem:0-63 (H)
+      \item Mem:64-124 (H)
+      \end{itemize} & const& ADD; ROT; XOR & Non-interference; Constant-Time; SPECTRE? &\\\hline
+  SHA256 &
+      \begin{itemize}
+      \item state (H)
+      \item k (L)
+      \item m (H)
+      \item data (H)
+      \item hash (L*)
+      \item input (H)
+      \item inputlen (L*)
+      \item datalen (L*)
+      \item bitlen (L*)
+      \end{itemize} & const& ADD; SRL; XOR & Non-interference; Constant-Time; SPECTRE? &\\\hline
+  TEA &
+      \begin{itemize}
+      \item Mem:0-7 (L)
+      \item Mem:8-23 (H)
+      \end{itemize} & const& ADD; SRL; XOR & Non-interference; Constant-Time &\\\hline
+      \hline
+\end{longtable}
+}
+%% \caption{Papers}
+%% \end{longtable}                 %
+
+\end{document}
