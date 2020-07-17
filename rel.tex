@@ -21,13 +21,17 @@
 \section{CT-WebAssembly}
 Check spectre policy
 {\footnotesize
-\begin{longtable}{|M{0.12\textwidth}|M{0.18\textwidth}M{0.12\textwidth}M{0.12\textwidth}M{0.20\textwidth}M{0.12\textwidth}|}
+\begin{longtable}{|M{0.12\textwidth}|M{0.20\textwidth}M{0.12\textwidth}M{0.12\textwidth}M{0.20\textwidth}M{0.06\textwidth}|}
   \hline
   Crypto Benchmark & Inputs& Loops & Operations on Sec&Policies & - \\
   \hline
   Salsa20 &
       \begin{itemize}
       \item Mem:0-63 (H)
+        \begin{itemize}
+        \item 4-19, 44-59 (H)
+        \item rest (L)
+        \end{itemize}
       \item Mem:64-124 (H)
       \end{itemize} & const& ADD; ROT; XOR & Non-interference; Constant-Time; SPECTRE? &\\\hline
   SHA256 &
@@ -36,7 +40,7 @@ Check spectre policy
       \item k (L)
       \item m (H)
       \item data (H)
-      \item hash (L*)
+      \item hash (H)
       \item input (H)
       \item inputlen (L*)
       \item datalen (L*)
@@ -44,7 +48,7 @@ Check spectre policy
       \end{itemize} & const& ADD; SRL; XOR & Non-interference; Constant-Time; SPECTRE? &\\\hline
   TEA &
       \begin{itemize}
-      \item Mem:0-7 (L)
+      \item Mem:0-7 (H)
       \item Mem:8-23 (H)
       \end{itemize} & const& ADD; SRL; XOR & Non-interference; Constant-Time &\\\hline
       \hline
